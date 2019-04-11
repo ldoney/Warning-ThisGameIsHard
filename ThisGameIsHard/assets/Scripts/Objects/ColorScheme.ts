@@ -1,7 +1,7 @@
 export class ColorScheme{
 
     // LIFE-CYCLE CALLBACKS:
-    static numSchemes:number = 11;
+    static numSchemes:number = 15;
 
     curScheme:scheme;
     Load () {
@@ -135,8 +135,37 @@ export class ColorScheme{
                 this.curScheme.Tertiary = this.fromHex("0197F6");
                 this.curScheme.Quatrenary = this.fromHex("448FA3");
                 break;
-                /*
             case 12:
+                this.curScheme.Background = this.fromHex("BBBBBF");
+                this.curScheme.Primary = this.fromHex("52D1DC");
+                this.curScheme.Secondary = this.fromHex("475B5A");
+                this.curScheme.Tertiary = this.fromHex("8D8E8E");
+                this.curScheme.Quatrenary = this.fromHex("A3A9AA");
+                break;
+            case 13:
+                this.curScheme.Background = this.fromHex("5E6472");
+                this.curScheme.Primary = this.fromHex("FFA69E");
+                this.curScheme.Secondary = this.fromHex("FAF3DD");
+                this.curScheme.Tertiary = this.fromHex("B8F2E6");
+                this.curScheme.Quatrenary = this.fromHex("AED9E0");
+                break;
+            case 14:
+                this.curScheme.Background = this.fromHex("FF9F1C");
+                this.curScheme.Primary = this.fromHex("011627");
+                this.curScheme.Secondary = this.fromHex("FDFFFC");
+                this.curScheme.Tertiary = this.fromHex("2EC4B6");
+                this.curScheme.Quatrenary = this.fromHex("E71D36");
+                break;
+            case 15:
+                this.curScheme.Background = this.fromHex("020122");
+                this.curScheme.Primary = this.fromHex("F2F3AE");
+                this.curScheme.Secondary = this.fromHex("EDD382");
+                this.curScheme.Tertiary = this.fromHex("FC9E4F");
+                this.curScheme.Quatrenary = this.fromHex("F4442E");
+            break;
+
+                /*
+            case 16:
                 this.curScheme.Background = this.fromHex("");
                 this.curScheme.Primary = this.fromHex("");
                 this.curScheme.Secondary = this.fromHex("");

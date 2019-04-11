@@ -26,6 +26,21 @@ export default class Game extends cc.Component {
         progress.totalLength = this.node.width;
         bar.setPosition((-(this.node.width / 2)) + bar.width / 2, 0);
     }
+    getBallRepAsSF(sprite:cc.Sprite, id:string)
+    {
+        var reso = "";
+        cc.loader.loadRes("Balls/"+id, function (err, res) {
+            if(!err)
+            {
+                cc.log("Resource Loaded!")
+                reso = res;
+                sprite.spriteFrame = new cc.SpriteFrame(res);
+            }else
+            {
+                cc.log(err.message);
+            }
+        });
+    }
     inSession:boolean = true;
 
     gameEnd:boolean = false;
@@ -33,7 +48,11 @@ export default class Game extends cc.Component {
     sessionTimer:number = 0.00;
 
     scheme:ColorScheme = null;
-
+    skins =
+    {
+        Version:0.00,
+        CurBall: "000",
+    }
     user =
     {
         HighScore: 0.00,
@@ -49,13 +68,21 @@ export default class Game extends cc.Component {
         {
             this.user = JSON.parse(localStorage.getItem("userData"));
         }
-
-
+        if(localStorage.getItem("skins") != null)
+        {
+            this.skins = JSON.parse(localStorage.getItem("skins"));
+        }else
+        {
+            localStorage.setItem("skins", JSON.stringify(this.skins));
+        }
+        this.getBallRepAsSF(this.node.getChildByName("Ball").getComponent(cc.Sprite), this.skins.CurBall);
+        this.node.getChildByName("CoinCnt").getComponent(cc.Label).string = "$"+this.user.Coins;
         this.scheme.loadColors(this.node);
     }
     addCoin(c:number)
     {
         this.user.Coins += c;
+        this.node.getChildByName("CoinCnt").getComponent(cc.Label).string = "$"+this.user.Coins;
     }
 
     actions:Array<cc.Action> = null;
@@ -144,7 +171,7 @@ export default class Game extends cc.Component {
         if(this.inSession)
         {
             this.sessionTimer += dt;
-            this.node.getChildByName("Timer").getComponent(cc.RichText).string = "<color=#" +  this.scheme.toHex(this.scheme.curScheme.Secondary) + ">" + this.sessionTimer.toFixed(2) + "</color>";
+            this.node.getChildByName("Timer").getComponent(cc.RichText).string = "<color=#" +  this.scheme.toHex(this.scheme.curScheme.Secondary) + ">Time:" + this.sessionTimer.toFixed(2) + "</color>";
             this.node.getChildByName("HighScore").getComponent(cc.RichText).string = "<color=#" + this.scheme.toHex(this.scheme.curScheme.Secondary) + ">High: " + this.user.HighScore.toFixed(2) + "</color>";
             if(this.sessionTimer > this.user.HighScore)
             {

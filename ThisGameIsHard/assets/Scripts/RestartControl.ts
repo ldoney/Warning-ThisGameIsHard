@@ -2,7 +2,7 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class RestartControl extends cc.Component {
-
+    
     Resume:boolean = true;
     onLoad(){
         this.node.on("touchstart", this.onDeviceTouchEvent, this);
@@ -21,14 +21,31 @@ export default class RestartControl extends cc.Component {
     }
     switchModes(i)
     {
+        var sprite = this.node.getComponent(cc.Sprite);
         if(i == 1)
         {
             this.Resume = true;
-            this.node.getComponentInChildren(cc.Label).string = "Resume";
+            cc.loader.loadRes("Sprites/Menu/BackBtn", function (err, res) {
+                if(!err)
+                {
+                    sprite.spriteFrame = new cc.SpriteFrame(res);
+                }else
+                {
+                    cc.log(err.message);
+                }
+            });
         }else if(i == 0)
         {
             this.Resume = false;
-            this.node.getComponentInChildren(cc.Label).string = "Restart";
+            cc.loader.loadRes("Sprites/Menu/ReturnArr", function (err, res) {
+                if(!err)
+                {
+                    sprite.spriteFrame = new cc.SpriteFrame(res);
+                }else
+                {
+                    cc.log(err.message);
+                }
+            });
         }
     }
 }

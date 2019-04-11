@@ -1,15 +1,15 @@
 {
   "ver": "2.2.0",
-  "uuid": "9fcda0a6-197b-4ba3-afc8-59c02e95e304",
+  "uuid": "f5db180e-a4a9-41c4-93cf-adfcf33b95da",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
   "subMetas": {
-    "MenuBtn": {
+    "icon_BackBtn": {
       "ver": "1.0.3",
-      "uuid": "cf512c10-1c99-44f4-a36e-a8ff92680a1c",
-      "rawTextureUuid": "9fcda0a6-197b-4ba3-afc8-59c02e95e304",
+      "uuid": "6a3e8c24-ee17-4a80-b509-0852981d0321",
+      "rawTextureUuid": "f5db180e-a4a9-41c4-93cf-adfcf33b95da",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

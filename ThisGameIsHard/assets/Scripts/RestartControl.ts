@@ -25,7 +25,8 @@ export default class RestartControl extends cc.Component {
         if(i == 1)
         {
             this.Resume = true;
-            cc.loader.loadRes("Sprites/Menu/BackBtn", function (err, res) {
+            sprite.node.rotationX = 0;
+            cc.loader.loadRes("Sprites/Menu/icon_BackBtn", function (err, res) {
                 if(!err)
                 {
                     sprite.spriteFrame = new cc.SpriteFrame(res);
@@ -34,10 +35,12 @@ export default class RestartControl extends cc.Component {
                     cc.log(err.message);
                 }
             });
+
         }else if(i == 0)
         {
             this.Resume = false;
-            cc.loader.loadRes("Sprites/Menu/ReturnArr", function (err, res) {
+            sprite.node.rotationX = -180;
+            cc.loader.loadRes("Sprites/Menu/icon_Restart", function (err, res) {
                 if(!err)
                 {
                     sprite.spriteFrame = new cc.SpriteFrame(res);

@@ -171,8 +171,9 @@ export default class Game extends cc.Component {
         if(this.inSession)
         {
             this.sessionTimer += dt;
-            this.node.getChildByName("Timer").getComponent(cc.RichText).string = "<color=#" +  this.scheme.toHex(this.scheme.curScheme.Secondary) + ">Time:" + this.sessionTimer.toFixed(2) + "</color>";
-            this.node.getChildByName("HighScore").getComponent(cc.RichText).string = "<color=#" + this.scheme.toHex(this.scheme.curScheme.Secondary) + ">High: " + this.user.HighScore.toFixed(2) + "</color>";
+            this.node.getChildByName("Timer").getComponent(cc.Label).string = "Time:" + this.sessionTimer.toFixed(2);
+
+            this.node.getChildByName("HighScore").getComponent(cc.Label).string = "Best:" + this.user.HighScore.toFixed(2);
             if(this.sessionTimer > this.user.HighScore)
             {
                 this.user.HighScore = this.sessionTimer;

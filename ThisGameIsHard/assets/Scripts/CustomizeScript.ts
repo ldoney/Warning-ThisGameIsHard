@@ -208,7 +208,7 @@ export default class CustomizeScript extends cc.Component {
                 this.lastID = "-1";
                 if(this.unlockSkin(id))
                 {
-                    window.getChildByName(id).color = this.scheme.curScheme.Primary;
+                    window.getChildByName(id).group = this.node.getChildByName("BallBtn").group;
                     window.removeChild(window.getChildByName("PRICE_"+id));
                     this.scheme.loadColors(this.node.getChildByName("ItemsView").getChildByName("view").getChildByName("content"));
                 }

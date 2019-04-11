@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "014",
+    "texture": "assets/resources/Balls/014.png",
+    "rect": [
+      10,
+      1,
+      69,
+      78
+    ],
+    "offset": [
+      4.5,
+      0
+    ],
+    "originalSize": [
+      80,
+      80
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,1 +1,0 @@
-{"version":3,"sources":["Skin.ts"],"names":[],"mappings":";;;;;AAAA;IAAA;IAEA,CAAC;IAAD,WAAC;AAAD,CAFA,AAEC,IAAA;AAFY,oBAAI","file":"","sourceRoot":"..\\..\\..\\..\\..\\assets\\Scripts\\Objects","sourcesContent":["export class skin {\r\n    \r\n}\r\n"]}

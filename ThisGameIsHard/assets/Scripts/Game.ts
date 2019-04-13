@@ -35,10 +35,22 @@ export default class Game extends cc.Component {
     start () {
         this.inSession = true;
         this.sessionTimer = 0.00;
-    
+        this.node.getChildByName("Menu").on('touchstart', function() {Helpers.returnToMenu(this.node)}, this);
+        this.node.getChildByName("Pause").on('touchstart', this.onPauseTouchEvent, this);
         this.getBallRepAsSF(this.node.getChildByName("Ball").getComponent(cc.Sprite), Helpers.skins.CurBall);
         this.node.getChildByName("CoinCnt").getComponent(cc.Label).string = "$"+Helpers.user.Coins;
         Helpers.scheme.loadColors(this.node);
+    }
+    onPauseTouchEvent(e)
+    {
+        if(this.inSession)
+        {
+            this.pause();
+        }
+        else
+        {
+            this.unpause();
+        }
     }
     addCoin(c:number)
     {
@@ -117,15 +129,6 @@ export default class Game extends cc.Component {
         cc.director.loadScene("PlayScene");
     }
 
-    menu()
-    {
-        this.node.runAction(cc.sequence( 
-            cc.fadeOut(0.25), 
-            cc.callFunc(function () {
-                cc.director.loadScene("MainMenu");
-            })
-        ));
-    }
     update (dt) {
         if(this.inSession)
         {

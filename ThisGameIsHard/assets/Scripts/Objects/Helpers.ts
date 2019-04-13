@@ -110,14 +110,8 @@ export class Helpers {
     }   
     static setUpLastScheme()
     {
-        if(localStorage.getItem("lastScheme") == null)
-        {
-            localStorage.setItem("lastScheme", (Math.floor(Math.random() * ColorScheme.numSchemes)) + "");
-            this.scheme.loadSchemeFromInt(parseInt(localStorage.getItem("lastScheme")));
-        }else
-        {
-            this.scheme.loadSchemeFromInt(parseInt(localStorage.getItem("lastScheme")));
-        }
+        this.scheme = new ColorScheme();
+        this.randomizeScheme();
     }
     static setUpSkinDB()
     {
@@ -150,13 +144,65 @@ export class Helpers {
             this.updateSkins();
         }
     }
+    static updateDB()
+    {
+        localStorage.setItem("skinDB", JSON.stringify(this.skinDB));
+    }
     static updateSkins()
     {
+        this.updateDB();
+        this.updateUsrSkins();
+    }
+    static updateUsrSkins()
+    {
         localStorage.setItem("skins", JSON.stringify(this.skins));
-        localStorage.setItem("skinDB", JSON.stringify(this.skinDB));
     }
     static updatePlayer()
     {
         localStorage.setItem("userData", JSON.stringify(this.user));
+    }
+    static checkForDBUpdates()
+    {
+        if(localStorage.getItem("skinDB") != null)
+        {
+        var old = JSON.parse(localStorage.getItem("skinDB"));
+        this.skinDB.Balls.forEach(element => {
+            if(!old.Balls.some(e => e.ID === element.ID))
+            {
+                old.Balls.push(element);
+            }
+        });
+        localStorage.setItem("skinDB", JSON.stringify(old));
+        }
+    }
+    static randomizeScheme()
+    {
+        if(localStorage.getItem("lastScheme") == null)
+        {
+            this.setScheme((Math.floor(Math.random() * ColorScheme.numSchemes)));
+        }else
+        {
+            this.setScheme((Math.floor(Math.random() * ColorScheme.numSchemes)));
+        }
+        
+    }
+    static setScheme(val)
+    {
+        localStorage.setItem("lastScheme", val + "");
+        this.scheme.loadSchemeFromInt(val);
+    }
+    static returnToMenu(node:cc.Node)
+    {
+        this.switchScenes("MainMenu", node);
+    }
+    static switchScenes(scene:string, node:cc.Node)
+    {
+        node.runAction(cc.sequence( 
+            cc.fadeOut(0.25), 
+            cc.callFunc(function () {
+                cc.director.loadScene(scene);
+            })
+        )); 
+        
     }
 }

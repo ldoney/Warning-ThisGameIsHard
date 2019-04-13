@@ -10,7 +10,11 @@ export default class MainMenu extends cc.Component {
         HighScore : 0.00,
         Count: 0,
         Coins:0,
+        NetWorth:0,
         TotalTime : 0.00,
+        AllTimes:[
+            
+        ],
     };
     scheme:ColorScheme = null;
     onLoad () {
@@ -30,10 +34,23 @@ export default class MainMenu extends cc.Component {
         {
             this.scheme.loadSchemeFromInt(parseInt(localStorage.getItem("lastScheme")));
         }
-        this.scheme.loadColors(this.node);        
+        this.scheme.loadColors(this.node);      
+        cc.loader.loadRes("Sounds/Music/MainMenuMusic", cc.AudioClip, function (err, clip) {
+            var audioID = cc.audioEngine.playMusic(clip, false);
+        });
         this.node.getChildByName("Play").on('touchstart', this.onPlayTouchEvent, this)
         this.node.getChildByName("Tutorial").on('touchstart', this.onTutTouchEvent, this)
         this.node.getChildByName("Customize").on('touchstart', this.onShoTouchEvent, this)
+        this.node.getChildByName("Stats").on("touchstart", this.onStaTouchEvent, this)
+    }
+    onStaTouchEvent(touch, event)
+    {
+        this.node.runAction(cc.sequence( 
+            cc.fadeOut(0.25), 
+            cc.callFunc(function () {
+                 cc.director.loadScene('Stats');
+            })
+        ));        
     }
     onTutTouchEvent(touch, event)
     {

@@ -58,7 +58,11 @@ export default class Game extends cc.Component {
         HighScore: 0.00,
         Count:0,
         Coins:0,
+        NetWorth:0,
         TotalTime:0,
+        AllTimes:[
+            
+        ],
     }
     start () {
         this.inSession = true;
@@ -82,6 +86,7 @@ export default class Game extends cc.Component {
     addCoin(c:number)
     {
         this.user.Coins += c;
+        this.user.NetWorth += c;
         this.node.getChildByName("CoinCnt").getComponent(cc.Label).string = "$"+this.user.Coins;
     }
 
@@ -141,6 +146,7 @@ export default class Game extends cc.Component {
         
         this.user.Count = this.user.Count + 1;
         this.user.TotalTime = this.user.TotalTime + this.sessionTimer;
+        this.user.AllTimes.push(this.sessionTimer);
         this.updatePlayer();
 
         var Resume = this.node.getChildByName("Resume");

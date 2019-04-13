@@ -11,7 +11,11 @@ export default class CustomizeScript extends cc.Component {
         HighScore: 0.00,
         Count:0,
         Coins:0,
+        NetWorth:0,
         TotalTime:0,
+        AllTimes:[
+            
+        ],
     }
     skinDB = {
         Balls: [
@@ -99,8 +103,8 @@ export default class CustomizeScript extends cc.Component {
     }
     skins =
     {
-        Version:0.00,
         CurBall: "000",
+        totalSkins: 1,
     }
     scheme:ColorScheme = null;
     start () {
@@ -295,6 +299,7 @@ export default class CustomizeScript extends cc.Component {
                 cc.delayTime(1),
                 cc.fadeOut(1),
             ));
+            this.skins.totalSkins++;
             if(this.unlockBallJSONRep(str))
             {
                 this.dispMsg("Unlocked!");

@@ -1,5 +1,4 @@
-import {ColorScheme} from "./Objects/ColorScheme"
-import {Helpers} from "./Objects/Helpers"
+import { Helpers } from "./Objects/Helpers";
 const {ccclass, property} = cc._decorator;
 
 @ccclass

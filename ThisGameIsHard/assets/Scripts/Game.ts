@@ -1,12 +1,11 @@
 import {ColorScheme} from "./Objects/ColorScheme"
-import {Helpers} from "./Objects/Helpers"
+import { Helpers } from "./Objects/Helpers";
 
 const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class Game extends cc.Component {
     onLoad () {
-        Helpers.randomizeScheme();
         var bar = this.node.getChildByName("progressBar");
 
         var progress = bar.getComponent(cc.ProgressBar);
@@ -65,11 +64,18 @@ export default class Game extends cc.Component {
         this.freeze();
         this.node.getChildByName("Paused_Message").getComponent(cc.RichText).string = 
         "<color=#" + Helpers.scheme.toHex(Helpers.scheme.curScheme.Secondary) + ">Paused...</color>";
+        this.node.getChildByName("HighScore").getComponent(cc.Label).string = "" + Helpers.user.HighScore.toFixed(2);
         this.fade(15);
         var Resume = this.node.getComponentInChildren("RestartControl");
         Resume.switchModes(1);
         Resume.node.runAction(cc.fadeIn(0.25));
         this.node.getChildByName("Menu").runAction(cc.fadeIn(0.25));
+        this.node.getChildByName("CoinCnt").runAction(cc.fadeIn(0.125));
+        this.node.getChildByName("HighScore").runAction(cc.fadeIn(0.125));
+        this.node.getChildByName("PostTimer").runAction(cc.fadeIn(0.125));
+        this.node.getChildByName("CoinCntLBL").runAction(cc.fadeIn(0.125));
+        this.node.getChildByName("HighScoreLBL").runAction(cc.fadeIn(0.125));
+        this.node.getChildByName("PostTimerLBL").runAction(cc.fadeIn(0.125));
     }
     fade(o)
     {
@@ -96,11 +102,18 @@ export default class Game extends cc.Component {
         this.unfade();
         this.node.getChildByName("Menu").runAction(cc.fadeOut(0.125));
         this.node.getChildByName("Resume").runAction(cc.fadeOut(0.125));
+        this.node.getChildByName("CoinCnt").runAction(cc.fadeOut(0.125));
+        this.node.getChildByName("HighScore").runAction(cc.fadeOut(0.125));
+        this.node.getChildByName("PostTimer").runAction(cc.fadeOut(0.125));
+        this.node.getChildByName("CoinCntLBL").runAction(cc.fadeOut(0.125));
+        this.node.getChildByName("HighScoreLBL").runAction(cc.fadeOut(0.125));
+        this.node.getChildByName("PostTimerLBL").runAction(cc.fadeOut(0.125));
     }
 
     freeze()
     {
         this.actions = cc.director.getActionManager().pauseAllRunningActions();
+        this.node.getChildByName("Ball").stopAllActions();
         this.inSession = false;
     }
     gameOver() {
@@ -110,7 +123,7 @@ export default class Game extends cc.Component {
         this.fade(0);
         this.node.getChildByName("Paused_Message").getComponent(cc.RichText).string = 
         "<color=#" + Helpers.scheme.toHex(Helpers.scheme.curScheme.Secondary) + ">Game Over</color>";
-
+        Helpers.randomizeScheme();
         localStorage.setItem("lastScheme", (Math.floor(Math.random() * ColorScheme.numSchemes)) + "");
         
         Helpers.user.Count = Helpers.user.Count + 1;
@@ -122,6 +135,12 @@ export default class Game extends cc.Component {
         Resume.getComponent("RestartControl").switchModes(0);
         Resume.runAction(cc.fadeIn(0.25));
         this.node.getChildByName("Menu").runAction(cc.fadeIn(0.25));
+        this.node.getChildByName("CoinCnt").runAction(cc.fadeIn(0.125));
+        this.node.getChildByName("HighScore").runAction(cc.fadeIn(0.125));
+        this.node.getChildByName("PostTimer").runAction(cc.fadeIn(0.125));
+        this.node.getChildByName("CoinCntLBL").runAction(cc.fadeIn(0.125));
+        this.node.getChildByName("HighScoreLBL").runAction(cc.fadeIn(0.125));
+        this.node.getChildByName("PostTimerLBL").runAction(cc.fadeIn(0.125));
     }
     restart()
     {
@@ -133,9 +152,9 @@ export default class Game extends cc.Component {
         if(this.inSession)
         {
             this.sessionTimer += dt;
-            this.node.getChildByName("Timer").getComponent(cc.Label).string = "Time:" + this.sessionTimer.toFixed(2);
-
-            this.node.getChildByName("HighScore").getComponent(cc.Label).string = "Best:" + Helpers.user.HighScore.toFixed(2);
+            this.node.getChildByName("Timer").getComponent(cc.Label).string = "" + this.sessionTimer.toFixed(1);
+            
+            this.node.getChildByName("PostTimer").getComponent(cc.Label).string = "" + this.sessionTimer.toFixed(2);
             if(this.sessionTimer > Helpers.user.HighScore)
             {
                 Helpers.user.HighScore = this.sessionTimer;

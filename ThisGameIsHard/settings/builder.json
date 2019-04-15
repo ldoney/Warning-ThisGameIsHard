@@ -17,7 +17,7 @@
   "encryptJs": true,
   "excludeScenes": [],
   "fb-instant-games": {},
-  "includeSDKBox": false,
+  "includeSDKBox": true,
   "inlineSpriteFrames": true,
   "inlineSpriteFrames_native": true,
   "md5Cache": false,

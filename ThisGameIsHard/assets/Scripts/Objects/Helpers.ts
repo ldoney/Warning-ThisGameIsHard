@@ -1,5 +1,98 @@
 import {ColorScheme} from "./ColorScheme"
 export class Helpers {
+    static schemeList={
+        List:[
+        {
+            Enabled:true,
+            Unlocked:true,
+            ID:"000",
+            Background:"C2C1C2",
+            Primary:"C41E3D",
+            Secondary:"890510",
+            Tertiary:"000F08",
+            Quatrenary:"36393B",
+        },
+        {
+            Enabled:true,
+            Unlocked:true,
+            ID:"001",
+            Background:"000103",
+            Primary:"E55400",
+            Secondary:"FE9920",
+            Tertiary:"FFB86F",
+            Quatrenary:"0D1F2D",
+        },
+        {
+            Enabled:true,
+            Unlocked:true,
+            ID:"002",
+            Background:"191716",
+            Primary:"DAA520",
+            Secondary:"FFD700",
+            Tertiary:"8B4513",
+            Quatrenary:"250902",
+        },
+        {
+            Enabled:true,
+            Unlocked:true,
+            ID:"003",
+            Background:"062417",
+            Primary:"89CC68",
+            Secondary:"3E8914",
+            Tertiary:"3DA35D",
+            Quatrenary:"92BDA3",
+        },
+        {
+            Enabled:true,
+            Unlocked:true,
+            ID:"004",
+            Background:"1D1D1D",
+            Primary:"3EF93E",
+            Secondary:"7FC67F",
+            Tertiary:"4C664C",
+            Quatrenary:"2C322C",
+        },
+        {
+            Enabled:true,
+            Unlocked:true,
+            ID:"005",
+            Background:"050505",
+            Primary:"59B5C1",
+            Secondary:"4987A4",
+            Tertiary:"445E89",
+            Quatrenary:"21295C",
+        },
+        {
+            Enabled:true,
+            Unlocked:true,
+            ID:"006",
+            Background:"BE95C4",
+            Primary:"631D76",
+            Secondary:"69306D",
+            Tertiary:"A5668B",
+            Quatrenary:"19191C",
+        },
+        {
+            Enabled:true,
+            Unlocked:true,
+            ID:"007",
+            Background:"231C07",
+            Primary:"C6AC8F",
+            Secondary:"715245",
+            Tertiary:"5E503F",
+            Quatrenary:"1C2A31",
+        },
+        {
+            Enabled:true,
+            Unlocked:true,
+            ID:"008",
+            Background:"EDEDED",
+            Primary:"252525",
+            Secondary:"424144",
+            Tertiary:"ABAAAA",
+            Quatrenary:"DDDDDD",
+        }
+    ]}
     static user =
     {
         HighScore: 0.00,
@@ -177,13 +270,7 @@ export class Helpers {
     }
     static randomizeScheme()
     {
-        if(localStorage.getItem("lastScheme") == null)
-        {
-            this.setScheme((Math.floor(Math.random() * ColorScheme.numSchemes)));
-        }else
-        {
-            this.setScheme((Math.floor(Math.random() * ColorScheme.numSchemes)));
-        }
+        this.scheme.loadRandomScheme();
         
     }
     static setScheme(val)

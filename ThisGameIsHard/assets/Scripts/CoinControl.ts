@@ -23,14 +23,17 @@ export default class CoinControl extends cc.Component {
        this.node.getComponent(cc.CircleCollider).radius = this.node.width/2;
        this.node.getComponent(cc.CircleCollider).enabled = true;
     }
-
-    onCollisionEnter(other, self)
+    onCollisionStay(other)
     {
         if(other.node.name == "Ball")
         {
             this.node.parent.getComponent("Game").addCoin(1);
             this.spawnCoin();
         }
+    }
+    onCollisionEnter(other)
+    {
+        this.onCollisionStay(other);
     }
 
     spawnCoin() {
@@ -54,11 +57,7 @@ export default class CoinControl extends cc.Component {
 
         this.currentTime = this.maxTime;
     }
-    start () {
-        
-    }
-
-    update (dt) {
+    update (dt: number) {
         if(this.node.parent.getComponent("Game").inSession)
         {
             this.currentTime -= dt;

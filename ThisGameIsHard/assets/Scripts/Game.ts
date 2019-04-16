@@ -134,6 +134,7 @@ export default class Game extends cc.Component {
         var Resume = this.node.getChildByName("Resume");
         Resume.getComponent("RestartControl").switchModes(0);
         Resume.runAction(cc.fadeIn(0.25));
+        this.node.getChildByName("HighScore").getComponent(cc.Label).string = "" + Helpers.user.HighScore.toFixed(2);
         this.node.getChildByName("Menu").runAction(cc.fadeIn(0.25));
         this.node.getChildByName("CoinCnt").runAction(cc.fadeIn(0.125));
         this.node.getChildByName("HighScore").runAction(cc.fadeIn(0.125));
@@ -157,7 +158,7 @@ export default class Game extends cc.Component {
             this.node.getChildByName("PostTimer").getComponent(cc.Label).string = "" + this.sessionTimer.toFixed(2);
             if(this.sessionTimer > Helpers.user.HighScore)
             {
-                Helpers.user.HighScore = this.sessionTimer;
+                Helpers.user.HighScore = this.sessionTimer;                
             }
         }
     }

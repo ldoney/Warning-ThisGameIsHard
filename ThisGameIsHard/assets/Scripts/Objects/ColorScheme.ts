@@ -18,14 +18,15 @@ export class ColorScheme{
         {
         var old = JSON.parse(localStorage.getItem("schemeDB"));
         Helpers.schemeList.List.forEach(element => {
-            if(!old.Balls.some(e => e.ID === element.ID))
+            if(!old.List.some(e => e.ID === element.ID))
             {
-                old.Balls.push(element);
+                old.List.push(element);
             }
         });
         localStorage.setItem("schemeDB", JSON.stringify(old));
         }
     }
+    
     loadColors(canvas:cc.Node)
     {
         canvas.color = this.curScheme.Background;
@@ -59,7 +60,8 @@ export class ColorScheme{
     }
     static numSchemes:number = 8;
     loadRandomScheme(){
-        var res = Helpers.schemeList.List.filter(e => e.Enabled == true);
+        var res = Helpers.schemeList.List.filter(e => e.unl == true);
+        res = res.filter(e => e.Enabled == true);
         var elm = res[Math.floor((Math.random()*res.length))];
         localStorage.setItem("lastScheme", elm.ID);
         this.loadSchemeFromInt(parseInt(elm.ID));

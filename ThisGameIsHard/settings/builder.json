@@ -17,7 +17,7 @@
   "encryptJs": true,
   "excludeScenes": [],
   "fb-instant-games": {},
-  "includeSDKBox": true,
+  "includeSDKBox": false,
   "inlineSpriteFrames": true,
   "inlineSpriteFrames_native": true,
   "md5Cache": false,
@@ -29,7 +29,7 @@
     "portrait": true,
     "upsideDown": false
   },
-  "packageName": "org.cocos2d.ThisGameIsHard",
+  "packageName": "org.microinc.ThisGameIsHard",
   "qqplay": {
     "REMOTE_SERVER_ROOT": "",
     "orientation": "portrait",

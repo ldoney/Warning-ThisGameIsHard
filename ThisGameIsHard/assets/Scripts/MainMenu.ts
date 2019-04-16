@@ -1,4 +1,5 @@
 import { Helpers } from "./Objects/Helpers";
+
 const {ccclass, property} = cc._decorator;
 
 @ccclass
@@ -14,7 +15,7 @@ export default class MainMenu extends cc.Component {
         this.node.getChildByName("Customize").on('touchstart', function() { Helpers.switchScenes("Shop",this.node)}, this)
         this.node.getChildByName("Play").on('touchstart', function() { Helpers.switchScenes("PlayScene",this.node)}, this)
         this.node.getChildByName("Change").on('touchstart', this.change, this)
-        //this.node.getChildByName("Palette").on('touchstart', function() { Helpers.switchScenes("PaletteEdit",this.node)}, this)
+        this.node.getChildByName("Palette").on('touchstart', function() { Helpers.switchScenes("PaletteEdit",this.node)}, this)
     }
     change()
     {

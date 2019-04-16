@@ -5,53 +5,100 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class PaletteController extends cc.Component {
     @property
-    prefab:cc.Asset = null;
-    fromHex(hex) {
-        var temp = cc.Color.BLACK;
-        return temp.fromHEX("#" + hex);
-    }
+    hstart:number = -15;
+
+    @property
+    hinc:number = 30;
+
+    window = null;
     start () {        
-        Helpers.scheme.loadColors(this.node);
+        this.node.getChildByName("Back").on('touchstart', function() { Helpers.returnToMenu(this.node)}, this);
+        this.node.getChildByName("LootBox").on('touchstart', function() { Helpers.switchScenes("LootBox",this.node)}, this);
+        this.window = this.node.getChildByName("ItemsView").getChildByName("view").getChildByName("content");
         var list = Helpers.schemeList.List;
+        var curh = this.hstart;
         for(var i = 0; i < list.length; i++)
         {
             var scheme = list[i];
             var nod = new cc.Node();
             nod.name = scheme.ID;
-            var sprite = new cc.Sprite();
             nod.addComponent(cc.Sprite);
-            nod.scaleX = 0.5;
-            nod.scaleY = 0.3918;
-           /* nod.setContentSize(80, 80);
-            if(balls[i].unl)
-            {
-                nod.group = this.node.getChildByName("BallBtn").group;
-            }else
-            {
-                nod.group = this.node.getChildByName("Title_1").group;
-                var txtnod = new cc.Node();
-                txtnod.name = "PRICE_"+balls[i].ID;
-                txtnod.addComponent(cc.Label);
-                var text = txtnod.getComponent(cc.Label);
-                text.string = "$" + balls[i].cost;
-                text.fontSize = 10;
-                txtnod.setPosition(wind, hind - 35);
-                txtnod.group = this.node.getChildByName("Title_1").group;
-                window.addChild(txtnod);
-            }
+            var sprite = nod.getComponent(cc.Sprite);            
+            Helpers.setFrame(sprite, "Sprites/Button");
+
+            var lblnode = new cc.Node();
+            lblnode.addComponent(cc.Label);
+            var lbl = lblnode.getComponent(cc.Label);
+            lbl.string = scheme.Name;
+
+            lblnode.scaleX = 0.87;
+            lblnode.color = Helpers.fromHex(scheme.Primary);
+            nod.color = Helpers.fromHex(scheme.Background);            
+            nod.addChild(lblnode);
             
-            window.addChild(nod);
-            nod.on('touchstart', this.onBallTouchEvent, this);
-            this.getBallRepAsSF(window.getChildByName(balls[i].ID).getComponent(cc.Sprite), balls[i].ID);
-            nod.setPosition(wind, hind);
-            wind += this.gap;
-            if(wind > mindw)
+            var statusNode = new cc.Node();
+            statusNode.addComponent(cc.Sprite);
+            var sprite = statusNode.getComponent(cc.Sprite);
+            Helpers.setFrame(sprite, "Sprites/Xmark");   
+            statusNode.opacity = 0;
+            statusNode.setScale(0.44,0.44);
+            statusNode.color = Helpers.fromHex(scheme.Tertiary);
+            statusNode.name = "Xmark";
+            nod.addChild(statusNode);
+
+
+            nod.scaleX = 0.5;
+            nod.scaleY = 0.33;
+            if(scheme.unl)
             {
-                wind = -85;
-                hind -= 44;
-            }*/
+                nod.on('touchstart', this.toggleEnable, this);
+                if(!scheme.Enabled)
+                {
+                    statusNode.opacity = 200;
+                }
+            }else{
+                //Locked item
+                var locknode = new cc.Node();
+                locknode.addComponent(cc.Sprite);
+                var sprite = locknode.getComponent(cc.Sprite);
+                Helpers.setFrame(sprite, "Sprites/Lock");
+                locknode.setScale(0.5, 0.6);
+                locknode.color = Helpers.fromHex(scheme.Secondary);
+                locknode.opacity = 200;
+                nod.addChild(locknode);
+            }
+            nod.setPosition(0, curh);
+            curh -= this.hinc;
+            this.window.addChild(nod);
         }
     }
-
-    // update (dt) {}
+    lastTouch:string = "-1";
+    toggleEnable(event:cc.Event.EventTouch)
+    {
+            var disp = event.target;
+            var ID = disp.name;
+            if(this.lastTouch == ID) {
+                var elem = Helpers.schemeList.List.find(e => e.ID === ID);
+                if (elem.Enabled && Helpers.schemeList.List.filter(e => e.unl && e.Enabled).length > 1)
+                {
+                    elem.Enabled = false;            
+                    if(disp.getChildByName("Xmark") != null)
+                    {
+                        disp.getChildByName("Xmark").opacity = 200;
+                    }
+                }else
+                {
+                    elem.Enabled = true;
+                    if(disp.getChildByName("Xmark") != null)
+                    {
+                        disp.getChildByName("Xmark").opacity = 0;
+                    }
+                }
+                Helpers.updateSchemes();
+            }
+            else
+            {
+                this.lastTouch = ID;
+            }
+        }
 }

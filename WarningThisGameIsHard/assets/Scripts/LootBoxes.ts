@@ -13,18 +13,25 @@ export default class LootBoxes extends cc.Component {
     }
     shake()
     {
-        var Box = this.node.getChildByName("Box");
-        Box.runAction(cc.repeatForever(cc.sequence(
-            cc.rotateBy(0.01,15),
-            cc.rotateBy(0.01,-15),
-            cc.rotateBy(0.01,-15),
-            cc.rotateBy(0.01,15),
-            cc.delayTime(2),
-        )));
+        if(Helpers.user.LootBoxes > 0)
+        {
+            var Box = this.node.getChildByName("Box");
+            Box.opacity = 255;
+            this.node.getChildByName("ErrMsg").opacity = 0;
+            Box.runAction(cc.repeatForever(cc.sequence(
+                cc.rotateBy(0.01,15),
+                cc.rotateBy(0.01,-15),
+                cc.rotateBy(0.01,-15),
+                cc.rotateBy(0.01,15),
+                cc.delayTime(2),
+            )));
+        }
     }
     unlock(ID:string)
     {
         var elem = Helpers.schemeList.List.find(e => e.ID == ID);
+        Helpers.user.LootBoxes--;
+        Helpers.updatePlayer();
         elem.unl = true;
         elem.Enabled = true;
         this.createItemDisp(elem);

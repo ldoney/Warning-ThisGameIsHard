@@ -5,10 +5,10 @@ export default class CoinControl extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
     @property
-    padX:number = 10
+    padX:number = 50
 
     @property
-    padY:number = 10
+    padY:number = 50
 
     @property
     maxTime:number = 5
@@ -38,13 +38,10 @@ export default class CoinControl extends cc.Component {
 
     spawnCoin() {
         var canvas = this.node.getParent();
-        var width = (canvas.width / 2);
-        var height = (canvas.height / 2) - this.padY;
+        var width = (canvas.width/2);
+        var height = (canvas.height/2);
         if(this.node.getPosition() != null)
         {
-            var x = this.node.getPosition().x;
-            var y = this.node.getPosition().y;
-
             var faded = cc.instantiate(this.node);
             faded.removeComponent(CoinControl);
             this.node.parent.addChild(faded);

@@ -55,6 +55,7 @@ export default class Game extends cc.Component {
     {
         Helpers.user.Coins += c;
         Helpers.user.NetWorth += c;
+        this.curRoundCC += c;
         this.node.getChildByName("CoinCnt").getComponent(cc.Label).string = "$"+Helpers.user.Coins;
     }
 
@@ -76,6 +77,7 @@ export default class Game extends cc.Component {
         this.node.getChildByName("CoinCntLBL").runAction(cc.fadeIn(0.125));
         this.node.getChildByName("HighScoreLBL").runAction(cc.fadeIn(0.125));
         this.node.getChildByName("PostTimerLBL").runAction(cc.fadeIn(0.125));
+
     }
     fade(o)
     {
@@ -108,6 +110,8 @@ export default class Game extends cc.Component {
         this.node.getChildByName("CoinCntLBL").runAction(cc.fadeOut(0.125));
         this.node.getChildByName("HighScoreLBL").runAction(cc.fadeOut(0.125));
         this.node.getChildByName("PostTimerLBL").runAction(cc.fadeOut(0.125));
+        this.node.getChildByName("CoinCntRound").runAction(cc.fadeOut(0.125));
+
     }
 
     freeze()
@@ -116,6 +120,7 @@ export default class Game extends cc.Component {
         this.node.getChildByName("Ball").stopAllActions();
         this.inSession = false;
     }
+    curRoundCC:number = 0;
     gameOver() {
         cc.log("Game End!");
         this.gameEnd = true;
@@ -139,6 +144,7 @@ export default class Game extends cc.Component {
         var Resume = this.node.getChildByName("Resume");
         Resume.getComponent("RestartControl").switchModes(0);
         Resume.runAction(cc.fadeIn(0.25));
+        this.node.getChildByName("CoinCntRound").getComponent(cc.Label).string = "+$" + this.curRoundCC;
         this.node.getChildByName("HighScore").getComponent(cc.Label).string = "" + Helpers.user.HighScore.toFixed(2);
         this.node.getChildByName("Menu").runAction(cc.fadeIn(0.25));
         this.node.getChildByName("CoinCnt").runAction(cc.fadeIn(0.125));
@@ -147,6 +153,7 @@ export default class Game extends cc.Component {
         this.node.getChildByName("CoinCntLBL").runAction(cc.fadeIn(0.125));
         this.node.getChildByName("HighScoreLBL").runAction(cc.fadeIn(0.125));
         this.node.getChildByName("PostTimerLBL").runAction(cc.fadeIn(0.125));
+        this.node.getChildByName("CoinCntRound").runAction(cc.fadeIn(0.125));
     }
     restart()
     {

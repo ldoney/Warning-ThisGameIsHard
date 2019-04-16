@@ -185,6 +185,11 @@ export class jsOBJs {
                 cost:80.00,
             },
             {
+                ID: "016",
+                unl:false,
+                cost:300.00,
+            },
+            {
                 ID: "009",
                 unl:false,
                 cost:90.00,
@@ -215,9 +220,34 @@ export class jsOBJs {
                 cost:300.00,
             },
             {
+                ID: "017",
+                unl:false,
+                cost:350.00,
+            },
+            {
+                ID: "018",
+                unl:false,
+                cost:350.00,
+            },
+            {
+                ID: "019",
+                unl:false,
+                cost:500.00,
+            },
+            {
+                ID: "021",
+                unl:false,
+                cost:750.00,
+            },
+            {
+                ID: "020",
+                unl:false,
+                cost:800.00,
+            },
+            {
                 ID: "015",
                 unl:false,
-                cost:300.00,
+                cost:1000.00,
             },
         ],
     }

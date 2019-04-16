@@ -24,6 +24,7 @@ export class Helpers {
     }
     static setUpAll()
     {
+        this.checkForDBUpdates();
         this.setUpLastScheme();
         this.setUpSkinDB();
         this.setUpSkins();

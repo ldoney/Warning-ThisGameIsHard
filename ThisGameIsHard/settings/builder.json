@@ -1,6 +1,6 @@
 {
   "android-instant": {
-    "REMOTE_SERVER_ROOT": "",
+    "REMOTE_SERVER_ROOT": "http://10.0.0.13:7456/preview-android-instant/",
     "host": "",
     "pathPattern": "",
     "recordPath": "",
@@ -35,7 +35,7 @@
     "orientation": "portrait",
     "zip": false
   },
-  "startScene": "2f35a908-9e9d-4f45-b7e0-573fa714c432",
+  "startScene": "754a4439-e91d-4cf3-9fbe-56052529e1b6",
   "title": "ThisGameIsHard",
   "webOrientation": "portrait",
   "wechatgame": {

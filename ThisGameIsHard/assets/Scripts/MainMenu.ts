@@ -24,8 +24,8 @@ export default class MainMenu extends cc.Component {
         Helpers.scheme.loadColors(this.node);
     }
     start () {
-        this.node.getChildByName("HighScore").getComponent(cc.Label).string = "High Score: " + Helpers.user.HighScore.toFixed(2);
-        this.node.getChildByName("Coins").getComponent(cc.Label).string = "Coins: " + Helpers.user.Coins;
+        this.node.getChildByName("HighScore").getComponent(cc.Label).string = "" + Helpers.user.HighScore.toFixed(1);
+        this.node.getChildByName("Coins").getComponent(cc.Label).string = "$" + Helpers.user.Coins;
         if(Helpers.user.LootBoxes > 0)
         {
             this.node.getChildByName("Notification").opacity = 255;

@@ -7,7 +7,6 @@ export default class BallControl extends cc.Component {
     Multiplier: number = 50;
     @property
     RotateMult:number  = 1.0;
-    // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
         cc.director.getCollisionManager().enabled = true;
@@ -15,10 +14,6 @@ export default class BallControl extends cc.Component {
         this.node.getComponent(cc.CircleCollider).radius = this.node.width/2;
         this.node.getComponent(cc.CircleCollider).enabled = true;
     }
-
-    start () {
-    }
-
     
     update (dt) {
         if(this.node.parent.getComponent("Game").inSession)

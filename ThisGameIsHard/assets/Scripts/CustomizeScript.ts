@@ -19,7 +19,6 @@ export default class CustomizeScript extends cc.Component {
         {
             var nod = new cc.Node();
             nod.name = balls[i].ID;
-            var sprite = new cc.Sprite();
             nod.addComponent(cc.Sprite);
             nod.scaleX = 0.5;
             nod.scaleY = 0.3918;

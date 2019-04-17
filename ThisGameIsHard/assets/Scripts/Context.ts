@@ -2,7 +2,7 @@ import {Helpers} from "./Objects/Helpers"
 export class Context {
     static setupAds()
     {
-        sdkbox.PluginSdkboxAds.init();
+        //sdkbox.PluginSdkboxAds.init();
     }
     init () {
 

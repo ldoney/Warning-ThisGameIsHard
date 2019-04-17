@@ -101,11 +101,4 @@ export default class LootBoxes extends cc.Component {
             cc.fadeOut(10)
         ))
     }
-    unbox()
-    {
-
-    }
-    update (dt) {
-        
-    }
 }

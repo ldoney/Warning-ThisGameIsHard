@@ -1,13 +1,16 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.3",
   "uuid": "d8cb66f6-8260-45c6-b6eb-91d4447144ff",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
   "subMetas": {
     "icon_Stopwatch": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "8d63ffab-e94a-4dd3-ad5a-29bf4910c00d",
       "rawTextureUuid": "d8cb66f6-8260-45c6-b6eb-91d4447144ff",
       "trimType": "auto",

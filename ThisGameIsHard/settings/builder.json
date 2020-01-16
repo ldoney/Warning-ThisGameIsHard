@@ -2,6 +2,7 @@
   "android-instant": {
     "REMOTE_SERVER_ROOT": "http://10.0.0.13:7456/preview-android-instant/",
     "host": "",
+    "packageName": "org.microinc.ThisGameIsHard",
     "pathPattern": "",
     "recordPath": "",
     "scheme": "https",
@@ -45,5 +46,15 @@
     "subContext": ""
   },
   "xxteaKey": "c3510532-6ff7-48",
-  "zipCompressJs": true
+  "zipCompressJs": true,
+  "android": {
+    "packageName": "org.microinc.ThisGameIsHard"
+  },
+  "ios": {
+    "packageName": "org.microinc.ThisGameIsHard"
+  },
+  "mac": {
+    "packageName": "org.microinc.ThisGameIsHard"
+  },
+  "win32": {}
 }
